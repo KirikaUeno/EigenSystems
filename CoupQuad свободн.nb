@@ -1,0 +1,445 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     12038,        337]*)
+(*NotebookOutlinePosition[     12746,        361]*)
+(*  CellTagsIndexPosition[     12702,        357]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    RowBox[{
+      RowBox[{"s4", ":=", 
+        RowBox[{"(", GridBox[{
+              {"0", "1", "0", "0"},
+              {\(-1\), "0", "0", "0"},
+              {"0", "0", "0", "1"},
+              {"0", "0", \(-1\), "0"}
+              }], ")"}]}], ";", " ", 
+      RowBox[{"mri", ":=", 
+        RowBox[{"(", GridBox[{
+              {"\[Gamma]", "0", "r4", \(-r2\)},
+              {"0", "\[Gamma]", \(-r3\), "r1"},
+              {\(-r1\), \(-r2\), "\[Gamma]", "0"},
+              {\(-r3\), \(-r4\), "0", "\[Gamma]"}
+              }], ")"}]}], ";"}]], "Input"],
+
+Cell["Quadrupole corrector", "Text"],
+
+Cell[BoxData[
+    \(Hx := y; \ Hy := x; \ G := {0, Hy, 0, \(-Hx\)};\)], "Input"],
+
+Cell[BoxData[
+    \(x := \(1\/2\) 
+          A\ a1 \((E\^\(I \((\[Psi]a + \[Phi]a)\)\) + 
+              E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\))\) + \(1\/2\) 
+          B \((b1\ E\^\(I \((\[Psi]b + \[Phi]b)\)\) + 
+              b1c\ E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\))\)\)], "Input"],
+
+Cell[BoxData[
+    \(y := \(1\/2\) 
+          A \((a3\ E\^\(I \((\[Psi]a + \[Phi]a)\)\) + 
+              a3c\ E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\))\) + \(1\/2\) 
+          B\ b3 \((E\^\(I \((\[Psi]b + \[Phi]b)\)\) + 
+              E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\))\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eqA = 
+      Simplify[\(-I\)\ \(E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\)\) {a1, a2c, 
+              a3c, a4c} . s4 . G]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ \[ExponentialE]\^\(\(-\[ImaginaryI]\)\ \
+\((2\ \[Phi]a + \[Phi]b + 2\ \[Psi]a + \[Psi]b)\)\)\ \((A\ a1\^2\ \
+\[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]b + \[Psi]b)\)\)\ \((1 + \
+\[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\))\) + 
+          a1\ B\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\)\ \
+\((b1c + b1\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\))\) - 
+          a3c\ \((A\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\)\ \((a3c + 
+                      a3\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\))\) + 
+                B\ b3\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\)\ \((1 + \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\))\))\))\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Simplify[\(1\/\(4\ \[Pi]\^2\)\) 
+        Integrate[
+          Integrate[eqA, {\[Psi]a, 0, 2\ \[Pi]}], {\[Psi]b, 0, 
+            2\ \[Pi]}]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ A\ \((a1\^2 - a3\ a3c)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eqB = 
+      Simplify[\(-I\)\ \(E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\)\) {b1c, b2c, 
+              b3, b4c} . s4 . G]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ \[ExponentialE]\^\(\(-\[ImaginaryI]\)\ \
+\((\[Phi]a + 2\ \[Phi]b + \[Psi]a + 2\ \[Psi]b)\)\)\ \((A\ \
+\[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]b + \[Psi]b)\)\)\ \((a1\ b1c\ \((1 \
++ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\))\) - 
+                b3\ \((a3c + 
+                      a3\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\))\))\) + 
+          B\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\)\ \
+\((b1c\^2 + 
+                b1\ b1c\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\) - 
+                b3\^2\ \((1 + \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b \
++ \[Psi]b)\)\))\))\))\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Simplify[\(1\/\(4\ \[Pi]\^2\)\) 
+        Integrate[
+          Integrate[eqB, {\[Psi]a, 0, 2\ \[Pi]}], {\[Psi]b, 0, 
+            2\ \[Pi]}]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ B\ \((b1\ b1c - b3\^2)\)\)], "Output"]
+}, Open  ]],
+
+Cell["Skew-quadrupole corrector", "Text"],
+
+Cell[BoxData[
+    \(Hx := \(-x\); \ Hy := y; \ G := {0, Hy, 0, \(-Hx\)};\)], "Input"],
+
+Cell[BoxData[
+    \(x := \(1\/2\) 
+          A\ a1 \((E\^\(I \((\[Psi]a + \[Phi]a)\)\) + 
+              E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\))\) + \(1\/2\) 
+          B \((b1\ E\^\(I \((\[Psi]b + \[Phi]b)\)\) + 
+              b1c\ E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\))\)\)], "Input"],
+
+Cell[BoxData[
+    \(y := \(1\/2\) 
+          A \((a3\ E\^\(I \((\[Psi]a + \[Phi]a)\)\) + 
+              a3c\ E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\))\) + \(1\/2\) 
+          B\ b3 \((E\^\(I \((\[Psi]b + \[Phi]b)\)\) + 
+              E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\))\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eqA = 
+      Simplify[\(-I\)\ \(E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\)\) {a1, a2c, 
+              a3c, a4c} . s4 . G]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ \[ExponentialE]\^\(\(-\[ImaginaryI]\)\ \
+\((2\ \[Phi]a + \[Phi]b + 2\ \[Psi]a + \[Psi]b)\)\)\ \((a1\ \[ExponentialE]\^\
+\(\[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\)\ \((A\ a3\ \[ExponentialE]\^\(\
+\[ImaginaryI]\ \((\[Phi]a + \[Phi]b + \[Psi]a + \[Psi]b)\)\) + 
+                B\ b3\ \((1 + \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b \
++ \[Psi]b)\)\))\))\) + 
+          a3c\ \((A\ a1\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\)\ \((2 + \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\))\) + 
+                B\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\)\ \((b1c + 
+                      b1\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\))\))\))\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Simplify[\(1\/\(4\ \[Pi]\^2\)\) 
+        Integrate[
+          Integrate[eqA, {\[Psi]a, 0, 2\ \[Pi]}], {\[Psi]b, 0, 
+            2\ \[Pi]}]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ A\ a1\ \((a3 + a3c)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eqB = 
+      Simplify[\(-I\)\ \(E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\)\) {b1c, b2c, 
+              b3, b4c} . s4 . G]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ \[ExponentialE]\^\(\(-\[ImaginaryI]\)\ \
+\((\[Phi]a + 2\ \[Phi]b + \[Psi]a + 2\ \[Psi]b)\)\)\ \((A\ \
+\[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]b + \[Psi]b)\)\)\ \((a3c\ b1c + 
+                a3\ b1c\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\) + 
+                a1\ b3\ \((1 + \[ExponentialE]\^\(2\ \[ImaginaryI]\ \
+\((\[Phi]a + \[Psi]a)\)\))\))\) + 
+          B\ b3\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\)\ \
+\((b1\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \[Psi]b)\)\) + 
+                b1c\ \((2 + \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\))\))\))\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Simplify[\(1\/\(4\ \[Pi]\^2\)\) 
+        Integrate[
+          Integrate[eqB, {\[Psi]a, 0, 2\ \[Pi]}], {\[Psi]b, 0, 
+            2\ \[Pi]}]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ B\ \((b1 + b1c)\)\ b3\)], "Output"]
+}, Open  ]],
+
+Cell["Space-charge corrector", "Text"],
+
+Cell[BoxData[
+    \(Fx := kx\ x; \ Fy := ky\ y; \ G := {0, Fx, 0, Fy};\)], "Input"],
+
+Cell[BoxData[
+    \(x := \(1\/2\) 
+          A\ a1 \((E\^\(I \((\[Psi]a + \[Phi]a)\)\) + 
+              E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\))\) + \(1\/2\) 
+          B \((b1\ E\^\(I \((\[Psi]b + \[Phi]b)\)\) + 
+              b1c\ E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\))\)\)], "Input"],
+
+Cell[BoxData[
+    \(y := \(1\/2\) 
+          A \((a3\ E\^\(I \((\[Psi]a + \[Phi]a)\)\) + 
+              a3c\ E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\))\) + \(1\/2\) 
+          B\ b3 \((E\^\(I \((\[Psi]b + \[Phi]b)\)\) + 
+              E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\))\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eqA = 
+      Simplify[\(-I\)\ \(E\^\(\(-I\) \((\[Psi]a + \[Phi]a)\)\)\) {a1, a2c, 
+              a3c, a4c} . s4 . G]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ \[ExponentialE]\^\(\(-\[ImaginaryI]\)\ \
+\((2\ \[Phi]a + \[Phi]b + 2\ \[Psi]a + \[Psi]b)\)\)\ \((A\ a1\^2\ \
+\[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]b + \[Psi]b)\)\)\ \((1 + \
+\[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\))\)\ kx + 
+          a1\ B\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\)\ \
+\((b1c + b1\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\))\)\ kx + 
+          a3c\ \((A\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\)\ \((a3c + 
+                      a3\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\))\) + 
+                B\ b3\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\)\ \((1 + \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\))\))\)\ ky)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Simplify[\(1\/\(4\ \[Pi]\^2\)\) 
+        Integrate[
+          Integrate[eqA, {\[Psi]a, 0, 2\ \[Pi]}], {\[Psi]b, 0, 
+            2\ \[Pi]}]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ A\ \((a1\^2\ kx + 
+          a3\ a3c\ ky)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eqB = 
+      Simplify[\(-I\)\ \(E\^\(\(-I\) \((\[Psi]b + \[Phi]b)\)\)\) {b1c, b2c, 
+              b3, b4c} . s4 . G]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ \[ExponentialE]\^\(\(-\[ImaginaryI]\)\ \
+\((\[Phi]a + 2\ \[Phi]b + \[Psi]a + 2\ \[Psi]b)\)\)\ \((A\ \
+\[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]b + \[Psi]b)\)\)\ \((a1\ b1c\ \((1 \
++ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\))\)\ kx + 
+                b3\ \((a3c + 
+                      a3\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]a + \
+\[Psi]a)\)\))\)\ ky)\) + 
+          B\ \[ExponentialE]\^\(\[ImaginaryI]\ \((\[Phi]a + \[Psi]a)\)\)\ \
+\((b1c\^2\ kx + 
+                b1\ b1c\ \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b + \
+\[Psi]b)\)\)\ kx + 
+                b3\^2\ \((1 + \[ExponentialE]\^\(2\ \[ImaginaryI]\ \((\[Phi]b \
++ \[Psi]b)\)\))\)\ ky)\))\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Simplify[\(1\/\(4\ \[Pi]\^2\)\) 
+        Integrate[
+          Integrate[eqB, {\[Psi]a, 0, 2\ \[Pi]}], {\[Psi]b, 0, 
+            2\ \[Pi]}]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(1\/2\)\)\ \[ImaginaryI]\ B\ \((b1\ b1c\ kx + 
+          b3\^2\ ky)\)\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1280}, {0, 941}},
+WindowSize->{831, 740},
+WindowMargins->{{172, Automatic}, {80, Automatic}},
+PrintingCopies->1,
+PrintingPageRange->{Automatic, Automatic}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1754, 51, 571, 15, 73, "Input"],
+Cell[2328, 68, 36, 0, 33, "Text"],
+Cell[2367, 70, 80, 1, 30, "Input"],
+Cell[2450, 73, 284, 5, 42, "Input"],
+Cell[2737, 80, 284, 5, 42, "Input"],
+
+Cell[CellGroupData[{
+Cell[3046, 89, 149, 3, 31, "Input"],
+Cell[3198, 94, 833, 14, 64, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4068, 113, 172, 4, 43, "Input"],
+Cell[4243, 119, 88, 1, 42, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4368, 125, 149, 3, 31, "Input"],
+Cell[4520, 130, 732, 13, 64, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5289, 148, 172, 4, 43, "Input"],
+Cell[5464, 154, 88, 1, 42, "Output"]
+}, Open  ]],
+Cell[5567, 158, 41, 0, 33, "Text"],
+Cell[5611, 160, 85, 1, 30, "Input"],
+Cell[5699, 163, 284, 5, 42, "Input"],
+Cell[5986, 170, 284, 5, 42, "Input"],
+
+Cell[CellGroupData[{
+Cell[6295, 179, 149, 3, 31, "Input"],
+Cell[6447, 184, 784, 13, 64, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7268, 202, 172, 4, 43, "Input"],
+Cell[7443, 208, 85, 1, 42, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7565, 214, 149, 3, 31, "Input"],
+Cell[7717, 219, 694, 11, 64, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8448, 235, 172, 4, 43, "Input"],
+Cell[8623, 241, 85, 1, 42, "Output"]
+}, Open  ]],
+Cell[8723, 245, 38, 0, 33, "Text"],
+Cell[8764, 247, 83, 1, 30, "Input"],
+Cell[8850, 250, 284, 5, 42, "Input"],
+Cell[9137, 257, 284, 5, 42, "Input"],
+
+Cell[CellGroupData[{
+Cell[9446, 266, 149, 3, 31, "Input"],
+Cell[9598, 271, 845, 14, 64, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10480, 290, 172, 4, 43, "Input"],
+Cell[10655, 296, 107, 2, 42, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10799, 303, 149, 3, 31, "Input"],
+Cell[10951, 308, 752, 13, 64, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11740, 326, 172, 4, 43, "Input"],
+Cell[11915, 332, 107, 2, 42, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+
