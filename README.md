@@ -1,3 +1,2 @@
-# mainRepository
-they are billions
-my somehow understandable recent projects here. Including wolfram mathematica and java.
+# WolframMathematica
+my somehow understandable recent WM projects here.
